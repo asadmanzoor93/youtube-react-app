@@ -27,6 +27,8 @@ input {
 }
 
 .related-videos{
+  position: absolute;
+  right: 0px;
   padding-left: 25px;
   padding-top: 50px;
 }
