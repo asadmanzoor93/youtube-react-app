@@ -5,7 +5,7 @@ import SearchBar from './components/search_bar';
 import YoutubeAPISearch from 'youtube-api-search';
 import VideoList from './components/video_list'; 
 import VideoDetail from './components/video_detail';
-const API_KEY = 'AIzaSyDng2gxyY6QiWVXqOT17FbWf4KXDScNIfw';
+const API_KEY = 'AIzaSyDGuP6-UPfIq4XcRIA7-WYe6lNAtJjeFAA';
 
 class App extends Component {
   constructor(props) {
@@ -16,14 +16,14 @@ class App extends Component {
       selectedVideo: null
     };
 
-    this.videoSearch('Beautiful Northern Pakistan')
+    this.videoSearch('')
   }
 
   videoSearch(term) {
     YoutubeAPISearch({key: API_KEY, term: term}, (data) => {
       this.setState({
         videos: data,
-        selectedVideo: data[0]
+        selectedVideo: null
       });
     });
   }
@@ -41,21 +41,33 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="col-4">
-          <h4 className="page-heading">Youtube Search App</h4>
-          <SearchBar onSearchTermChange={searchTerm => this.videoSearch(searchTerm)} />
-          <br />
+        
+        <div className="row">
+          <div className="col-lg-5"></div>
+          <div className="col-lg-7"><h4 className="page-heading">Youtube Search App</h4></div> 
+        </div>
+        <div className="row">
+          <div className="col-lg-3"></div>
+          <div className="col-lg-9">
+            <SearchBar onSearchTermChange={searchTerm => this.videoSearch(searchTerm)} />
+          </div>
+        </div>
+        
+        <br />
+
+        <div className="row">
+          <div className="col-lg-1"></div>
+          <div className={this.state.selectedVideo ? "col-lg-7" : ""}>
+            <VideoDetail video={this.state.selectedVideo} />
+          </div>
+          <div className="col-lg-4">
+            <div className={this.state.selectedVideo ? "related-videos" : ""}>
+              <VideoList onVideoSelect={userSelected => this.videoSelect(userSelected)}
+                videos={this.state.videos} />
+            </div>
+          </div>
         </div>
 
-        <div  className="video-detail">
-          <VideoDetail video={this.state.selectedVideo} />
-        </div>
-
-        <div className="related-videos">
-          <h4 className="related-videos-heading">Related Videos</h4>
-          <VideoList onVideoSelect={userSelected => this.videoSelect(userSelected)}
-            videos={this.state.videos} />
-        </div>
       </div>
     );
   }

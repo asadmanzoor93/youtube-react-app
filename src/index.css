@@ -16,25 +16,20 @@ code {
 input {
   width: 700px;
   height: 40px;
+  text-align: center;
 }
 
 .page-heading {
   padding-top: 30px;
 }
 
-.video-detail {
-  padding-left: 20px;
-}
-
 .related-videos{
   position: absolute;
   right: 0px;
   padding-left: 25px;
-  padding-top: 50px;
 }
 
 .related-video-list {
-  width: 700px;
   height: 130px;
 }
 
@@ -48,11 +43,16 @@ input {
   height: 120px;
 }
 
+.related-videos ul {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 .related-videos-heading {
   padding-bottom: 20px;
 }
 
-.related-videos ul {
-  padding-right: 15px;
-  padding-left: 15px;
+.search-bar{
+  margin: 0px;
+  text-align: center;
 }

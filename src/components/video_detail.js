@@ -4,7 +4,7 @@ const VideoDetail = (props) => {
     const video = props.video;
 
     if(!video) {
-        return <div className="video-detail">Loading Search Results....</div>
+        return <div></div>
     }
 
     const url = `https://www.youtube.com/embed/${video.id.videoId}`;
@@ -12,7 +12,7 @@ const VideoDetail = (props) => {
     return (
         <div>
             <div className="embed-responsive embed-responsive-21by9">
-                <iframe className="embed-responsive-item" src={url}></iframe>
+                <iframe className="embed-responsive-item" src={url} title={video.snippet.title}></iframe>
             </div>
             <hr/>
             <div>

@@ -9,7 +9,7 @@ const VideoItem = (props) => {
         <div onClick={() => onUserSelected(video)} className="related-video-list">
             <div className="media">
                 <div className="media-left">
-                    <img className="media-object" src={imageUrl} />
+                    <img className="media-object" src={imageUrl} alt="video thumbnail" />
                 </div>
                 <div className="media-body">
                     <div className="media-heading">{video.snippet.title}</div>

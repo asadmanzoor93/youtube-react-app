@@ -1,26 +1,32 @@
 import React from 'react';
+import { debounce } from 'lodash';
+
 
 class SearchBar extends React.Component{
     constructor(props){
         super(props);
-        this.state = { term: 'Beautiful Northern Pakistan'};
-        this.onInputChange = this.onInputChange.bind(this);
+        this.state = { term: ''};
+        this.handleCriteriaChange = this.handleCriteriaChange.bind(this);
     }
 
-    onInputChange(event) {
-        this.setState({
-            term: event.target.value
+    raiseDoSearchWhenUserStoppedTyping = debounce(() => {
+        this.props.onSearchTermChange(this.state.term);
+    }, 500);
+
+    handleCriteriaChange = (event) => {
+        this.setState({ term: event.target.value }, () => {
+            this.raiseDoSearchWhenUserStoppedTyping();
         });
-        this.props.onSearchTermChange(event.target.value);
     }
 
     render() {
         return (
             <div>
-                <input value={this.state.term} onChange={this.onInputChange} 
+                <input className="searchbar" value={this.state.term} 
+                    onChange={this.handleCriteriaChange} 
+                    onKeyPress={this.handleCriteriaChange} 
                     placeholder="Please enter term to search" />
             </div>
-            
         )
     }
 }
